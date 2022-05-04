@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelAppLibrary.Data
 {
-    public class SqlData
+    public class SqlData : IDatabaseData
     {
         private readonly ISqlDataAccess _db;
 
@@ -23,7 +23,7 @@ namespace HotelAppLibrary.Data
         public List<RoomTypeModel> GetAvailableRoomTypes(DateTime startDate, DateTime endDate)
         {
             return _db.LoadData<RoomTypeModel, dynamic>("dbo.spRoomTypes_GetAvailableTypes",
-                                                 new {startDate, endDate },
+                                                 new { startDate, endDate },
                                                  "SqlDb",
                                                  true);
         }
@@ -32,7 +32,7 @@ namespace HotelAppLibrary.Data
                               string lastName,
                               DateTime startDate,
                               DateTime endDate,
-                              int roomTypeId) 
+                              int roomTypeId)
         {
             GuestModel guest = _db.LoadData<GuestModel, dynamic>("dbo.spGuests_Insert",
                                                                  new { firstName, lastName },
@@ -51,21 +51,26 @@ namespace HotelAppLibrary.Data
                                                                               connectionStringName,
                                                                               true);
 
-            _db.SaveData("dbo.spBookings_Insert", new 
-                                                {
-                                                    roomId = availableRooms.First().Id,
-                                                    guestId = guest.Id,
-                                                    startDate,
-                                                    endDate,
-                                                    totalCost = timeStaying.Days * roomType.Price
-                                                },
+            _db.SaveData("dbo.spBookings_Insert", new
+            {
+                roomId = availableRooms.First().Id,
+                guestId = guest.Id,
+                startDate,
+                endDate,
+                totalCost = timeStaying.Days * roomType.Price
+            },
                                                 connectionStringName,
                                                 true);
         }
 
         public List<BookingFullModel> SearchBookings(string lastName)
         {
-           return _db.LoadData<BookingFullModel, dynamic>("dbo.spBookings_Search", new {lastName, startDate = DateTime.Now.Date }, connectionStringName, true);
+            return _db.LoadData<BookingFullModel, dynamic>("dbo.spBookings_Search", new { lastName, startDate = DateTime.Now.Date }, connectionStringName, true);
+        }
+
+        public void CheckInGuest(int bookingId)
+        {
+            _db.SaveData("dbo.spBookings_CheckIn", new { Id = bookingId }, connectionStringName, true);
         }
     }
 }
