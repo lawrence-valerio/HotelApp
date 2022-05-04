@@ -25,6 +25,7 @@ namespace HotelAppLibrary.Databases
                                       string connectionStringName,
                                       bool isStoredProcedure = false)
         {
+
             string connectionString = _config.GetConnectionString(connectionStringName);
 
             CommandType commandType = CommandType.Text;

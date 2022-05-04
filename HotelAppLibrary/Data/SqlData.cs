@@ -47,7 +47,7 @@ namespace HotelAppLibrary.Data
             TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
 
             List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
-                                                                              new { firstName, lastName, roomTypeId },
+                                                                              new { startDate, endDate, roomTypeId },
                                                                               connectionStringName,
                                                                               true);
 
