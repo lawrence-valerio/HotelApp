@@ -10,12 +10,13 @@ namespace HotelAppLibrary.Data
 {
     public class SqlData
     {
-        private readonly ISqlDataAccess db;
+        private readonly ISqlDataAccess _db;
+
         private const string connectionStringName = "SqlDb";
 
         public SqlData(ISqlDataAccess db)
         {
-            this.db = db;
+            _db = db;
         }
 
 
@@ -25,6 +26,28 @@ namespace HotelAppLibrary.Data
                                                  new {startDate, endDate },
                                                  "SqlDb",
                                                  true);
+        }
+
+        public void BookGuest(string firstName,
+                              string lastName,
+                              DateTime startDate,
+                              DateTime endDate,
+                              int roomTypeId) 
+        {
+            GuestModel guest = _db.LoadData<GuestModel, dynamic>("dbo.spGuests_Insert",
+                                                                 new { firstName, lastName },
+                                                                 connectionStringName,
+                                                                 true).First();
+
+            RoomTypeModel roomType = _db.LoadData<RoomTypeModel, dynamic>("select * from dbo.RoomTypes where Id = @Id",
+                                                                          new { Id = roomTypeId },
+                                                                          connectionStringName,
+                                                                          false).First();
+
+            List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
+                                                                              new { firstName, lastName, roomTypeId },
+                                                                              connectionStringName,
+                                                                              true);
         }
     }
 }
