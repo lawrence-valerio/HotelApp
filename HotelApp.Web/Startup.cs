@@ -1,3 +1,5 @@
+using HotelAppLibrary.Data;
+using HotelAppLibrary.Databases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,8 @@ namespace HotelApp.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddTransient<IDatabaseData, SqlData>();
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
