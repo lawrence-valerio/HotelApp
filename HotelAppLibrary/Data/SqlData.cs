@@ -44,10 +44,23 @@ namespace HotelAppLibrary.Data
                                                                           connectionStringName,
                                                                           false).First();
 
+            TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
+
             List<RoomModel> availableRooms = _db.LoadData<RoomModel, dynamic>("dbo.spRooms_GetAvailableRooms",
                                                                               new { firstName, lastName, roomTypeId },
                                                                               connectionStringName,
                                                                               true);
+
+            _db.SaveData("dbo.spBookings_Insert", new 
+                                                {
+                                                    roomId = availableRooms.First().Id,
+                                                    guestId = guest.Id,
+                                                    startDate,
+                                                    endDate,
+                                                    totalCost = timeStaying.Days * roomType.Price
+                                                },
+                                                connectionStringName,
+                                                true);
         }
     }
 }
