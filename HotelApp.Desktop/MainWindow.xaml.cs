@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelAppLibrary.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace HotelApp.Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IDatabaseData _db;
+
+        public MainWindow(IDatabaseData db)
         {
             InitializeComponent();
+            _db = db;
         }
     }
 }
