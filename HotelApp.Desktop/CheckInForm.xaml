@@ -19,5 +19,23 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock FontWeight="Bold" Margin="5">Reservation:</TextBlock>
+            <TextBlock Text="{Binding FirstName}" Margin="5"/>
+            <TextBlock Text="{Binding LastName}" Margin="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock FontWeight="Bold" Margin="5">Room:</TextBlock>
+            <TextBlock Text="{Binding Title}" Margin="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock FontWeight="Bold" Margin="5">Room Number:</TextBlock>
+            <TextBlock Text="{Binding RoomNumber}" Margin="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3">
+            <TextBlock FontWeight="Bold" Margin="5">Total Cost:</TextBlock>
+            <TextBlock Text="{Binding TotalCost, StringFormat='c'}" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>
