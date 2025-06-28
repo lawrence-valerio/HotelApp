@@ -19,8 +19,6 @@ A comprehensive hotel management solution built with .NET 5, featuring both web 
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## 🎯 Overview
 
@@ -208,27 +206,6 @@ HotelApp/
 - **Visual Studio** - Integrated development environment
 - **SQL Server Management Studio** - Database management
 - **Git** - Version control
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Development Guidelines
-
-- Follow C# coding conventions
-- Add appropriate comments and documentation
-- Write unit tests for new features
-- Ensure all tests pass before submitting
-
-## 📝 License
-
-## This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 <div align="center">
   <sub>Built with .NET 5 • ASP.NET Core • WPF • SQL Server</sub>
