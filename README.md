@@ -1,6 +1,6 @@
 # 🏨 Hotel Management System
 
-A comprehensive hotel management solution built with .NET 5, featuring both web and desktop applications for efficient hotel operations.
+A comprehensive hotel management solution built with .NET 5, featuring both web and desktop applications for managing guests and booking rooms for guests.
 
 ![.NET 5](https://img.shields.io/badge/.NET-5.0-512BD4?style=for-the-badge&logo=.net&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
